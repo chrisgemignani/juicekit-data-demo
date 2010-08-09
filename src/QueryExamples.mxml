@@ -6,7 +6,7 @@
 	<!--
 	
 	This demonstrates a wide variety of Query examples. 
-
+	
 	-->
 	
 	<fx:Declarations>
@@ -30,13 +30,13 @@
 			import query.StaticXML;
 			
 			public var sampleurl:String = "http://media.juiceanalytics.com/census/CENSUS_STATEAGESEX.csv";
-
+			
 			public var examples:ArrayCollection = new ArrayCollection([new QueryExampleBase()]);
-				
+			
 			[Bindable]
 			public var query:Query = new Query();
-				
-
+			
+			
 			
 			protected function application1_creationCompleteHandler(event:FlexEvent):void
 			{
@@ -72,9 +72,25 @@
 					'Where clauses can also be stacked. Stacked wheres are ANDed together. This generates the same result as the previous query but is easier to read.',
 					StaticXML.x7,
 					StaticXML.q7));
+				examples.addItem(new QueryExampleBase('Simple expressions',
+					'Expressions exist to add, subtract, multiply and divide.',
+					StaticXML.x8,
+					StaticXML.q8));
+				examples.addItem(new QueryExampleBase('Aggregate expressions',
+					'Aggregate expressions will automatically apply grouping to your data. In this example, the sum() Expression causes the entire data to be grouped into a single row. Aggregate expressions include: sum, pctchange, wtdavg',
+					StaticXML.x9, 
+					StaticXML.q9));
+				examples.addItem(new QueryExampleBase('Mixing aggregate and row expressions with map()',
+					'The map() operator lets you mix aggregate expressions with row level expressions. Here we calculate each rows percent of the total population.',
+					StaticXML.x10, 
+					StaticXML.q10));
+				examples.addItem(new QueryExampleBase('Changing data with update()',
+					'The update() operator can be used instead of select() to change your data directly. Notice how every subsequent query is affected by the new value of POP2008.',
+					StaticXML.x11, 
+					StaticXML.q11));
 				
 			}
-
+			
 		]]>
 	</fx:Script>
 	
@@ -108,21 +124,21 @@
 				<s:itemRenderer>
 					<fx:Component>
 						<s:ItemRenderer>
-							<s:Label text="{data.title}"/>
+							<s:Label text="{data['title']}"/>
 						</s:ItemRenderer>
 					</fx:Component>
 				</s:itemRenderer>
 			</s:List>			
-
+			
 			<mx:Spacer height="20"/>
 			<s:Label text="{(exampleList.selectedItem as QueryExampleBase).title}" styleName="jkHeader" width="100%"/>
 			<s:Label text="{(exampleList.selectedItem as QueryExampleBase).description}" styleName="jkNotes" width="100%"/>
 			<mx:Spacer height="20"/>
 			<s:Label text="{(exampleList.selectedItem as QueryExampleBase).queryStr}" fontFamily="Courier New" fontSize="11.5" width="100%"/>
 		</s:VGroup>
-
+		
 		<mx:Canvas width="1" height="500" backgroundColor="0xdedede"/>
-
+		
 		<s:VGroup gap="5">			
 			<s:Label text="Result of Query" styleName="jkHeader"/>
 			<s:Label text="The result of evaluating the selected query against the raw data." styleName="jkNotes"/>

@@ -2,7 +2,7 @@ package query
 {
 	import org.juicekit.query.Query;
 	import org.juicekit.query.methods.*;
-
+	
 	public class StaticXML
 	{
 		
@@ -121,8 +121,32 @@ select('STATE',
 			.orderby('POP2000')
 			;
 		
+		public static var x9:XML = new XML(<![CDATA[
+select({total: sum('POP2000'), chg: pctchange('POP2008','POP2000')});
+]]>);
+		public static var q9:Query = select({total: sum('POP2000')});
 		
-
+		public static var x10:XML = new XML(<![CDATA[
+select('STATE', 'AGE', 'SEX', 'POP2000'
+{ pctOfTotal: div('POP2000', sum('POP2000'))})
+.map();
+]]>);
+		public static var q10:Query = select('STATE', 'AGE', 'SEX', 'POP2000',
+			{ pctOfTotal: div('POP2000', sum('POP2000'))}).map();
+		
+		
+		public static var x11:XML = new XML(<![CDATA[
+update('STATE', 
+'AGE', 
+'SEX', 
+'POP2000', 
+{'POP2008': _(1)});
+]]>);
+		public static var q11:Query = update('STATE', 'AGE', 'SEX', 'POP2000', {'POP2008': _(1)});
+		
+		
+		
+		
 		
 		
 		public function StaticXML()

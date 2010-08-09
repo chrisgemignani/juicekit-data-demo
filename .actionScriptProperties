@@ -15,10 +15,8 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
-    <application path="Main.mxml"/>
     <application path="DataParse.mxml"/>
     <application path="QueryExamples.mxml"/>
-    <application path="SortPerformance.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
